@@ -1,8 +1,8 @@
 Sakila Restful Search Sample
 ============================
 
-This sample demonstrates the use of FIQL based search implementation in <a href="http://cxf.apache.org/">CXF JAX-RS</a>.
-<a href="http://dev.mysql.com/doc/sakila/en/sakila.html">Sakila</a> is a sample database provided by MySQL and the search
+This sample demonstrates the use of FIQL based search implementation in CXF JAX-RS(http://cxf.apache.org/).
+Sakila(http://dev.mysql.com/doc/sakila/en/sakila.html) is a sample database provided by MySQL and the search
 queries are performed on this database.
 
 Some of the sample search queries are :
