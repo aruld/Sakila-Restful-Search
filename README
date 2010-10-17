@@ -1,0 +1,35 @@
+Sakila Restful Search Sample
+============================
+
+This sample demonstrates the use of FIQL based search implementation in <a href="http://cxf.apache.org/">CXF JAX-RS</a>.
+<a href="http://dev.mysql.com/doc/sakila/en/sakila.html">Sakila</a> is a sample database provided by MySQL and the search
+queries are performed on this database.
+
+Some of the sample search queries are :
+
+http://localhost:9000/sakila/searchActors?_s=firstname==PENELOPE  =>
+SELECT * FROM actor WHERE firstname = 'PENELOPE'
+
+http://localhost:9000/sakila/searchActors?_s=actorid=ge=15 =>
+SELECT * FROM actor WHERE actorid >= '15'
+
+http://localhost:9000/sakila/searchActors?_s=lastupdate=le=2010-03-11T18:00:00.000%2B00:00 =>
+SELECT * FROM actor WHERE lastupdate <= 'Thu Mar 11 11:00:00 MST 2010'
+
+http://localhost:9000/sakila/searchActors?_s=lastupdate=ge=2006-02-11T18:00:00.000%2B00:00;firstname==JOHNNY  =>
+SELECT * FROM actor WHERE lastupdate >= 'Sat Feb 11 11:00:00 MST 2006' AND firstname = 'JOHNNY'
+
+http://localhost:9000/sakila/searchActors?_s=lastupdate=ge=2006-02-11T18:00:00.000%2B00:00;firstname==JOHNNY;lastname==LOLLO* =>
+SELECT * FROM actor WHERE lastupdate >= 'Sat Feb 11 11:00:00 MST 2006' AND lastname LIKE 'LOLLO%' AND firstname = 'JOHNNY'
+
+http://localhost:9000/sakila/searchFilms?_s=rating==PG;rentalduration!=0 =>
+SELECT * FROM film WHERE rentalduration <> '0' AND rating = 'PG'
+
+http://localhost:9000/sakila/searchFilms?_s=rating==R;rentalduration!=0;title==ANACONDA* =>
+SELECT * FROM film WHERE rentalduration <> '0' AND title LIKE 'ANACONDA%' AND rating = 'R'
+
+http://localhost:9000/sakila/searchFilms?_s=rating==PG;rentalduration!=0;title==SANTA* =>
+SELECT * FROM film WHERE rentalduration <> '0' AND title LIKE 'SANTA%' AND rating = 'PG'
+
+http://localhost:9000/sakila/searchFilms?_s=rating==R;rentalduration!=0;releaseyear=ge=2006-01-01T00:00:00.000%2B00:00 =>
+SELECT * FROM film WHERE rentalduration <> '0' AND releaseyear >= 'Sat Dec 31 17:00:00 MST 2005' AND rating = 'R'

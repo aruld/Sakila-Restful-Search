@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="Sakila" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>sakila.FilmCategory</class>
+    <class>sakila.Inventory</class>
+    <class>sakila.City</class>
+    <class>sakila.NicerButSlowerFilmList</class>
+    <class>sakila.CustomerList</class>
+    <class>sakila.Country</class>
+    <class>sakila.FilmText</class>
+    <class>sakila.Category</class>
+    <class>sakila.SalesByFilmCategory</class>
+    <class>sakila.Store</class>
+    <class>sakila.Film</class>
+    <class>sakila.Payment</class>
+    <class>sakila.Actor</class>
+    <class>sakila.Address</class>
+    <class>sakila.ActorInfo</class>
+    <class>sakila.FilmList</class>
+    <class>sakila.Customer</class>
+    <class>sakila.Language</class>
+    <class>sakila.FilmActor</class>
+    <class>sakila.SalesByStore</class>
+    <class>sakila.StaffList</class>
+    <class>sakila.Staff</class>
+    <class>sakila.Rental</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila"/>
+      <property name="javax.persistence.jdbc.password" value="secret"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
