@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Sakila Restful Search Model
@@ -24,6 +25,7 @@ import javax.persistence.TemporalType;
  * @author aruld@acm.org
  */
 @Entity
+@XmlRootElement
 @Table(name = "rental")
 @NamedQueries({
     @NamedQuery(name = "Rental.findAll", query = "SELECT r FROM Rental r"),

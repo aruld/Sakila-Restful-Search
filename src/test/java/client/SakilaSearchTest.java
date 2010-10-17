@@ -6,12 +6,11 @@ import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import resources.SakilaResource;
 import sakila.Actor;
 import sakila.Film;
+import sakila.Rental;
 
 import java.util.Collection;
 
@@ -24,10 +23,10 @@ import static junit.framework.Assert.assertEquals;
  */
 public class SakilaSearchTest {
 
-    private Server server;
+    static Server server;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
         sf.setResourceClasses(SakilaResource.class);
         sf.getInInterceptors().add(new LoggingInInterceptor());
@@ -53,8 +52,16 @@ public class SakilaSearchTest {
         assertEquals(1, films.size());
     }
 
-    @After
-    public void tearDown() {
+    @Test
+    public void searchRentals() {
+        //http://localhost:9000/sakila/searchRentals?_s=rentaldate=lt=2005-05-27T00:00:00.000%2B00:00
+        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchRentals?_s=rentaldate%3Dlt%3D2005-05-27T00:00:00.000%2B00:00");
+        Collection<? extends Rental> rentals = wc.getCollection(Rental.class);
+        assertEquals(278, rentals.size());
+    }
+
+    @AfterClass
+    public static void tearDown() {
         server.destroy();
     }
 }

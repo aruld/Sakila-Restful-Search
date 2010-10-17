@@ -4,6 +4,7 @@ import org.apache.cxf.jaxrs.ext.search.SearchCondition;
 import org.apache.cxf.jaxrs.ext.search.SearchContext;
 import sakila.Actor;
 import sakila.Film;
+import sakila.Rental;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,6 +29,7 @@ public class SakilaResource {
 
     List<Actor> actors = new ArrayList<Actor>();
     List<Film> films = new ArrayList<Film>();
+    List<Rental> rentals = new ArrayList<Rental>();
 
     public SakilaResource() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sakila");
@@ -49,6 +51,16 @@ public class SakilaResource {
             film.setLanguage(null);
             film.setLanguage1(null);
             films.add(film);
+        }
+        @SuppressWarnings("unchecked")
+        List<Rental> rentalList = em.createNamedQuery("Rental.findAll").getResultList();
+        for (Rental rental : rentalList) {
+            //break the cyclic graph mess to satisfy JAXB
+            rental.setCustomer(null);
+            rental.setInventory(null);
+            rental.setPaymentCollection(null);
+            rental.setStaff(null);
+            rentals.add(rental);
         }
     }
 
@@ -98,6 +110,31 @@ public class SakilaResource {
         List<Film> found = sc.findAll(films);
         if (found.size() == 0) {
             throw new NotFoundException("No matching film found.");
+        }
+        return found;
+    }
+
+    @GET
+    @Produces("application/xml")
+    @Path("rentals")
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    @GET
+    @Produces("application/xml")
+    @Path("searchRentals")
+    public List<Rental> searchRentals() {
+        SearchCondition<Rental> sc = searchContext.getCondition(Rental.class);
+
+        if (sc == null) {
+            throw new NotFoundException("Invalid search query.");
+        }
+        System.out.println(sc.toSQL("rental"));
+
+        List<Rental> found = sc.findAll(rentals);
+        if (found.size() == 0) {
+            throw new NotFoundException("No matching rental found.");
         }
         return found;
     }
