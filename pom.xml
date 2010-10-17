@@ -8,6 +8,32 @@
     <artifactId>Sakila-Restful-Search</artifactId>
     <version>1.0</version>
 
+    <description>
+        Sakila Restful Search sample demonstrates the use of FIQL based search implementation in CXF JAX-RS.
+    </description>
+    <url>http://github.com/aruld/Sakila-Restful-Search</url>
+    <scm>
+        <connection>scm:git:git@github.com:aruld/Sakila-Restful-Search.git</connection>
+        <url>scm:git:git@github.com:aruld/Sakila-Restful-Search.git</url>
+        <developerConnection>scm:git:git@github.com:aruld/Sakila-Restful-Search.git</developerConnection>
+    </scm>
+    <prerequisites>
+        <maven>2.0.9</maven>
+    </prerequisites>
+    <developers>
+        <developer>
+            <id>aruld</id>
+            <name>Arul Dhesiaseelan</name>
+            <email>aruld@acm.org</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>3.6.0.Final</hibernate.version>
@@ -30,11 +56,6 @@
             <artifactId>cxf-rt-frontend-jaxrs</artifactId>
             <version>${cxf.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>javax.servlet</groupId>-->
-            <!--<artifactId>servlet-api</artifactId>-->
-            <!--<version>2.5</version>-->
-        <!--</dependency>-->
         <dependency>
             <artifactId>cxf-rt-transports-http</artifactId>
             <groupId>org.apache.cxf</groupId>
