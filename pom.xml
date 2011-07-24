@@ -36,8 +36,8 @@
     </licenses>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.version>3.6.0.Final</hibernate.version>
-        <cxf.version>2.3.0</cxf.version>
+        <hibernate.version>3.6.6.Final</hibernate.version>
+        <cxf.version>2.4.0</cxf.version>
     </properties>
 
     <dependencies>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.13</version>
+            <version>5.1.17</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
