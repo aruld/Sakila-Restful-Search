@@ -39,7 +39,8 @@ public class SakilaSearchTest {
     @Test
     public void searchActors() {
         //http://localhost:9000/sakila/searchActors?_s=firstname==PENELOPE
-        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchActors?_s=firstname%3D%3DPENELOPE");
+        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchActors");
+        wc.query("_s", "firstname==PENELOPE");
         Collection<? extends Actor> actors = wc.getCollection(Actor.class);
         assertEquals(4, actors.size());
     }
@@ -47,7 +48,8 @@ public class SakilaSearchTest {
     @Test
     public void searchFilms() {
         //http://localhost:9000/sakila/searchFilms?_s=rating==PG;rentalduration!=0;title==SANTA*
-        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchFilms?_s=rating%3D%3DPG;rentalduration%21%3D0;title%3D%3DSANTA*");
+        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchFilms");
+        wc.query("_s","rating==PG;rentalduration!=0;title==SANTA*");
         Collection<? extends Film> films = wc.getCollection(Film.class);
         assertEquals(1, films.size());
     }
@@ -55,7 +57,8 @@ public class SakilaSearchTest {
     @Test
     public void searchRentals() {
         //http://localhost:9000/sakila/searchRentals?_s=rentaldate=lt=2005-05-27T00:00:00.000%2B00:00
-        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchRentals?_s=rentaldate%3Dlt%3D2005-05-27T00:00:00.000%2B00:00");
+        WebClient wc = WebClient.create("http://localhost:9000/sakila/searchRentals");
+        wc.query("_s","rentaldate=lt=2005-05-27T00:00:00.000%2B00:00");
         Collection<? extends Rental> rentals = wc.getCollection(Rental.class);
         assertEquals(278, rentals.size());
     }
